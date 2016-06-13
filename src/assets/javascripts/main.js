@@ -1,7 +1,7 @@
 //= require /bespoke/bespoke
 //= require_full_tree /bespoke/plugins/
 //= require_full_tree /bespoke/themes/
-//= require highlightjs/highlight.pack
+//= require highlightjs/highlight.pack.min
 
 bespoke.from("#presentation", [
     bespoke.themes.nebula(),

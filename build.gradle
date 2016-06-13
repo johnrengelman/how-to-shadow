@@ -5,11 +5,17 @@ buildscript {
     dependencies {
         classpath 'com.craigburke.gradle:client-dependencies:1.1.3'
         classpath 'com.bertramlabs.plugins:asset-pipeline-gradle:2.9.0'
+        classpath 'org.ajoberstar:gradle-git:1.5.0'
     }
 }
 
 apply plugin: 'com.craigburke.client-dependencies'
 apply plugin: 'com.bertramlabs.asset-pipeline'
+apply plugin: 'org.ajoberstar.github-pages'
+
+ext {
+    githubRepoUri = 'https://github.com/craigburke/bespoke-gradle.git'
+}
 
 clientDependencies {
     npm {
@@ -21,11 +27,26 @@ clientDependencies {
         'bespoke-bullets'('1.1.0', into: 'bespoke/plugins')
         'bespoke-theme-nebula'('1.0.1', into: 'bespoke/themes')
         'highlightjs'('8.7.0') {
-            include 'highlight.pack.js'
+            include 'highlight.pack.min.js'
             include 'styles/darkula.css'
         }
     }
 }
+
+githubPages {
+    repoUri = project.githubRepoUri
+
+    credentials {
+        username = project.hasProperty('githubToken') ? project.githubToken : ''
+        password = ''
+    }
+
+    pages {
+        from assetCompile.destinationDir
+    }
+}
+
+publishGhPages.dependsOn assetCompile
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.13'
