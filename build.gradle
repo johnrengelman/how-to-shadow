@@ -18,10 +18,14 @@ clientDependencies {
         'bespoke-progress'('1.0.0', into: 'bespoke/plugins')
         'bespoke-hash'('1.0.2', into: 'bespoke/plugins')
         'bespoke-backdrop'('1.0.0', into: 'bespoke/plugins')
+        'bespoke-bullets'('1.1.0', into: 'bespoke/plugins')
         'bespoke-theme-nebula'('1.0.1', into: 'bespoke/themes')
+        'highlightjs'('8.7.0') {
+            include 'highlight.pack.js'
+            include 'styles/darkula.css'
+        }
     }
 }
-
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.13'
