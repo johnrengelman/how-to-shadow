@@ -3,11 +3,12 @@
 //= require_full_tree /bespoke/themes/
 //= require highlightjs/highlight.pack.min
 
-bespoke.from("#presentation", [
+bespoke.from("article.deck", [
     bespoke.themes.nebula(),
     bespoke.plugins.keys(),
     bespoke.plugins.hash(),
     bespoke.plugins.backdrop(),
+    bespoke.plugins.progress(),
     bespoke.plugins.bullets(),
     bespoke.plugins.backdrop()
 ]);

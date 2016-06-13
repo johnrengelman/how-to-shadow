@@ -1,6 +1,7 @@
 buildscript {
     repositories {
         jcenter()
+        mavenLocal()
     }
     dependencies {
         classpath 'com.craigburke.gradle:client-dependencies:1.1.3'
@@ -17,6 +18,7 @@ ext {
     githubRepoUri = 'https://github.com/craigburke/bespoke-gradle.git'
 }
 
+
 clientDependencies {
     npm {
         'bespoke'('1.1.0')
@@ -30,7 +32,21 @@ clientDependencies {
             include 'highlight.pack.min.js'
             include 'styles/darkula.css'
         }
+        'asciidoctor-bespoke'('1.0.0.alpha.1', url: 'asciidoctor/asciidoctor-bespoke', from: 'templates/slim') {
+            include '*'
+        }
     }
+}
+
+
+assets {
+    configOptions = [
+            asciidoctor: [
+                    'template_dirs': [ project.file("src/assets/vendor/asciidoctor-bespoke").absolutePath ],
+                    atttibutes: [ 'docinfo1': true ]
+            ]
+    ]
+    excludes = ['**/*.slim', '**/slides/*.adoc']
 }
 
 githubPages {

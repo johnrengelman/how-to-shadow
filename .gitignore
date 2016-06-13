@@ -1,3 +1,5 @@
+.idea
 .gradle
-build
+/build
+/buildSrc/build
 src/assets/vendor
