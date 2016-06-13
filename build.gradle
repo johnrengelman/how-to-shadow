@@ -9,6 +9,7 @@ buildscript {
     }
 }
 
+apply plugin: 'jetty'
 apply plugin: 'com.craigburke.client-dependencies'
 apply plugin: 'com.bertramlabs.asset-pipeline'
 apply plugin: 'org.ajoberstar.github-pages'
@@ -25,6 +26,7 @@ clientDependencies {
         'bespoke-hash'('1.0.2', into: 'bespoke/plugins')
         'bespoke-backdrop'('1.0.0', into: 'bespoke/plugins')
         'bespoke-bullets'('1.1.0', into: 'bespoke/plugins')
+        'bespoke-overview'('1.0.4', into: 'bespoke/plugins')
         'bespoke-theme-nebula'('1.0.1', into: 'bespoke/themes')
         'highlightjs'('8.7.0') {
             include 'highlight.pack.min.js'
@@ -56,6 +58,12 @@ githubPages {
     pages {
         from assetCompile.destinationDir
     }
+}
+
+jettyRun {
+    httpPort = 9000
+    contextPath = ''
+    webAppSourceDirectory = file('build/assets/')
 }
 
 publishGhPages.dependsOn assetCompile

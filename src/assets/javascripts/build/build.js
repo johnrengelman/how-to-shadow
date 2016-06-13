@@ -9,6 +9,7 @@ bespoke.from("article.deck", [
     bespoke.plugins.hash(),
     bespoke.plugins.backdrop(),
     bespoke.plugins.progress(),
+    bespoke.plugins.overview(),
     bespoke.plugins.bullets(),
     bespoke.plugins.backdrop()
 ]);
