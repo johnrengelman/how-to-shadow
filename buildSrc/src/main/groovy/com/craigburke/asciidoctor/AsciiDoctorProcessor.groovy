@@ -25,10 +25,7 @@ class AsciiDoctorProcessor extends AbstractProcessor {
     }
 
     static HashMap<String, Object> getOptions() {
-        Map options = AssetPipelineConfigHolder.config?.asciidoctor ?: [:]
-        options.safe = 0
-        options['header_footer'] = true
-        options
+        AssetPipelineConfigHolder.config?.asciidoctor ?: [:]
     }
 
 }

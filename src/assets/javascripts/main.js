@@ -6,6 +6,8 @@
 bespoke.from("article.deck", [
     bespoke.themes.nebula(),
     bespoke.plugins.keys(),
+    bespoke.plugins.classes(),
+    bespoke.plugins.state(),
     bespoke.plugins.hash(),
     bespoke.plugins.backdrop(),
     bespoke.plugins.progress(),

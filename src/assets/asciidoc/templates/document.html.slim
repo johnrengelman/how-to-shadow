@@ -1,0 +1,30 @@
+doctype 5
+html lang=(attr :lang, 'en' unless attr? :nolang)
+  head
+    meta charset=(attr :encoding, 'utf-8')
+    meta name='viewport' content='width=device-width, initial-scale=1'
+    title=(doctitle sanitize: true, use_fallback: true).tr_s(' ', ' ')
+    - [:description, :keywords, :author, :copyright].each do |_key|
+      - if attr? _key
+        meta name=_key content=(attr _key)
+    - if attr? :favicon
+      - if (_favicon_href = attr :favicon).empty?
+        - _favicon_href = 'favicon.ico'
+      - if (_favicon_image_type = File.extname(_favicon_href)[1..-1]) == 'ico'
+        - _favicon_image_type = 'x-icon'
+      link rel='shortcut icon' href=_favicon_href type="image/#{_favicon_image_type}"
+    meta name='mobile-web-app-capable' content='yes'
+    - if attr? :appname
+      meta name='application-name' content=(attr :appname)
+    link rel='stylesheet' href='main.css'
+    - unless (_docinfo = docinfo :head, '-bespoke.html').empty?
+      =_docinfo
+  body id=id
+    article.deck
+      - unless noheader
+        - if header?
+          include ../../vendor/asciidoctor-bespoke/slide_title.html.slim
+      =content
+      - unless (_docinfo = docinfo :footer, '-bespoke.html').empty?
+        =_docinfo
+    script src='main.js'

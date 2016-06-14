@@ -1,15 +1,9 @@
 == Some Groovy Code
 
-[source,groovy,role='fragment']
-.Maps and lists
+[source,groovy]
 ----
-Map map = [language: 'Groovy']
-List list = ['foo', 'bar']
+class Foo {
+    String bar = 'WUT'
+}
 ----
 
-[source,groovy,role='fragment']
-.Command chaining and optional parenthesis
-----
-// equivalent to: say(hello).to('Craig')
-say hello to 'Craig' 
-----

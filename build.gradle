@@ -20,31 +20,48 @@ ext {
 
 clientDependencies {
     npm {
-        'bespoke'('1.1.0')
-        'bespoke-keys'('1.1.0', into: 'bespoke/plugins')
-        'bespoke-progress'('1.0.0', into: 'bespoke/plugins')
-        'bespoke-hash'('1.0.2', into: 'bespoke/plugins')
-        'bespoke-backdrop'('1.0.0', into: 'bespoke/plugins')
-        'bespoke-bullets'('1.1.0', into: 'bespoke/plugins')
-        'bespoke-overview'('1.0.4', into: 'bespoke/plugins', transitive: false)
-        'bespoke-theme-nebula'('1.0.1', into: 'bespoke/themes')
+        'bespoke'('1.*')
+        'bespoke-classes'('1.*', into: 'bespoke/plugins')
+        'bespoke-keys'('1.*', into: 'bespoke/plugins')
+        'bespoke-progress'('1.*', into: 'bespoke/plugins')
+        'bespoke-hash'('1.*', into: 'bespoke/plugins')
+        'bespoke-backdrop'('1.*', into: 'bespoke/plugins')
+        'bespoke-bullets'('1.*', into: 'bespoke/plugins')
+        'bespoke-state'('1.*', into: 'bespoke/plugins')
+        'bespoke-overview'('1.*', into: 'bespoke/plugins', transitive: false)
+        'bespoke-theme-nebula'('1.*', into: 'bespoke/themes')
+
+        'asciidoctor-bespoke'('*', url: 'asciidoctor/asciidoctor-bespoke', from: 'templates/slim') {
+            include '*'
+        }
+
         'highlightjs'('8.7.0') {
             include 'highlight.pack.min.js'
             include 'styles/darkula.css'
         }
-        'asciidoctor-bespoke'('1.0.0.alpha.1', url: 'asciidoctor/asciidoctor-bespoke', from: 'templates/slim') {
-            include '*'
+
+        'font-awesome'('4.6.3') {
+            include 'css/font-awesome.min.css', 'fonts/**'
         }
     }
 }
 
 assets {
+    minifyJs = false
+    minifyCss = false
+
     configOptions = [
-            asciidoctor: [
-                    'template_dirs': [ project.file('src/assets/vendor/asciidoctor-bespoke').absolutePath ]
-            ]
+        asciidoctor: [
+            header_footer: true,
+            template_dirs: [
+                project.file('src/assets/vendor/asciidoctor-bespoke').absolutePath,
+                project.file('src/assets/asciidoc/templates').absolutePath,
+            ],
+            attributes: [ icons: 'font' ]
+        ]
     ]
-    excludes = ['**/*.slim', '**/slides/*.adoc']
+
+    excludes = ['**/asciidoctor-bespoke/*', '**/slides/*.adoc']
 }
 
 githubPages {

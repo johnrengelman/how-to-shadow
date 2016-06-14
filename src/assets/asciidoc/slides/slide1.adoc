@@ -1,1 +1,4 @@
-== My Awesome Presentation
+== About Me
+
+* icon:globe[] www.craigburke.com
+* icon:twitter[] @craigburke1
