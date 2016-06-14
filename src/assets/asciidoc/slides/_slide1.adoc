@@ -1,4 +1,5 @@
 == About Me
 
+[%build]
 * icon:globe[] www.craigburke.com
 * icon:twitter[] @craigburke1

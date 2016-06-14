@@ -12,7 +12,7 @@ bespoke.from("article.deck", [
     bespoke.plugins.backdrop(),
     bespoke.plugins.progress(),
     bespoke.plugins.overview(),
-    bespoke.plugins.bullets(),
+    bespoke.plugins.bullets('.build,.build-items>*:not(.build-items)'),
     bespoke.plugins.backdrop()
 ]);
 

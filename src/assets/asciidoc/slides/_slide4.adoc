@@ -1,5 +1,5 @@
 == !
-[.canvas]
+[.data]
 image::parrot.gif[]
 
 image::parrot.gif[]
