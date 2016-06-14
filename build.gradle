@@ -48,9 +48,6 @@ clientDependencies {
 }
 
 assets {
-    minifyJs = false
-    minifyCss = false
-
     configOptions = [
         asciidoctor: [
             header_footer: true,
@@ -61,7 +58,6 @@ assets {
             attributes: [ icons: 'font' ]
         ]
     ]
-
     excludes = ['**/asciidoctor-bespoke/*', '**/slides/*.adoc']
 }
 

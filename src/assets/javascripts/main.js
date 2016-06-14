@@ -4,7 +4,6 @@
 //= require highlightjs/highlight.pack.min
 
 bespoke.from("article.deck", [
-    bespoke.themes.cube(),
     bespoke.plugins.keys(),
     bespoke.plugins.scale(),
     bespoke.plugins.classes(),

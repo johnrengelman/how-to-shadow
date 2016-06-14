@@ -1,0 +1,8 @@
+== !
+[.canvas]
+image::parrot.gif[]
+
+image::parrot.gif[]
+image::parrot.gif[]
+image::parrot.gif[]
+
