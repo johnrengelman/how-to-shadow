@@ -2,8 +2,6 @@
 
 [source,groovy]
 ----
-class Foo {
-    String bar = 'WUT'
-}
+include::code/Foo.groovy[]
 ----
 

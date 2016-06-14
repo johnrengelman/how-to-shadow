@@ -1,0 +1,3 @@
+== An Image
+
+image::groovypgh.png[]

@@ -23,7 +23,7 @@ html lang=(attr :lang, 'en' unless attr? :nolang)
     article.deck
       - unless noheader
         - if header?
-          include ../../vendor/asciidoctor-bespoke/slide_title.html.slim
+          include ../vendor/asciidoctor-bespoke/slide_title.html.slim
       =content
       - unless (_docinfo = docinfo :footer, '-bespoke.html').empty?
         =_docinfo

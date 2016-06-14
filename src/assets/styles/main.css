@@ -2,3 +2,7 @@
 *= require /highlightjs/styles/darkula
 *= require /font-awesome/css/font-awesome.min
 */
+
+code {
+    text-align: left;
+}

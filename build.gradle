@@ -22,6 +22,7 @@ clientDependencies {
     npm {
         'bespoke'('1.*')
         'bespoke-classes'('1.*', into: 'bespoke/plugins')
+        'bespoke-scale'('1.*', into: 'bespoke/plugins')
         'bespoke-keys'('1.*', into: 'bespoke/plugins')
         'bespoke-progress'('1.*', into: 'bespoke/plugins')
         'bespoke-hash'('1.*', into: 'bespoke/plugins')
@@ -29,7 +30,7 @@ clientDependencies {
         'bespoke-bullets'('1.*', into: 'bespoke/plugins')
         'bespoke-state'('1.*', into: 'bespoke/plugins')
         'bespoke-overview'('1.*', into: 'bespoke/plugins', transitive: false)
-        'bespoke-theme-nebula'('1.*', into: 'bespoke/themes')
+        'bespoke-theme-cube'('1.*', into: 'bespoke/themes')
 
         'asciidoctor-bespoke'('*', url: 'asciidoctor/asciidoctor-bespoke', from: 'templates/slim') {
             include '*'
@@ -55,7 +56,7 @@ assets {
             header_footer: true,
             template_dirs: [
                 project.file('src/assets/vendor/asciidoctor-bespoke').absolutePath,
-                project.file('src/assets/asciidoc/templates').absolutePath,
+                project.file('src/assets/templates').absolutePath,
             ],
             attributes: [ icons: 'font' ]
         ]
