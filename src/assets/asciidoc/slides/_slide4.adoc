@@ -1,6 +1,4 @@
-== !
-[.data]
-image::parrot.gif[]
+== Party More!
 
 image::parrot.gif[]
 image::parrot.gif[]

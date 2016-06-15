@@ -1,4 +1,4 @@
-= My Awesome Presentation
+= My Presentation
 
 include::slides/_slide1.adoc[]
 

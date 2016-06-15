@@ -31,18 +31,17 @@ clientDependencies {
         'bespoke-state'('1.*', into: 'bespoke/plugins')
         'bespoke-overview'('1.*', into: 'bespoke/plugins', transitive: false)
         'bespoke-theme-cube'('1.*', into: 'bespoke/themes')
-
         'asciidoctor-bespoke'('*', url: 'asciidoctor/asciidoctor-bespoke', from: 'templates/slim') {
             include '*'
         }
-
+        'normalize.css'('4.1.1')
+        'font-awesome'('4.6.3') {
+            include 'css/font-awesome.min.css'
+            include 'fonts/**'
+        }
         'highlightjs'('8.7.0') {
             include 'highlight.pack.min.js'
             include 'styles/darkula.css'
-        }
-
-        'font-awesome'('4.6.3') {
-            include 'css/font-awesome.min.css', 'fonts/**'
         }
     }
 }
