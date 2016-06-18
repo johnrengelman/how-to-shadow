@@ -1,9 +1,9 @@
 = My Presentation
 
-include::slides/_slide1.adoc[]
+include::slides/slide1.adoc[]
 
-include::slides/_slide2.adoc[]
+include::slides/slide2.adoc[]
 
-include::slides/_slide3.adoc[]
+include::slides/slide3.adoc[]
 
-include::slides/_slide4.adoc[]
+include::slides/slide4.adoc[]

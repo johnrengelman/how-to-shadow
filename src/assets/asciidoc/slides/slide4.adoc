@@ -1,0 +1,3 @@
+== Never Stop!
+[.canvas]
+image::parrot.gif[]

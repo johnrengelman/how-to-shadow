@@ -9,7 +9,6 @@ bespoke.from("article.deck", [
     bespoke.plugins.classes(),
     bespoke.plugins.state(),
     bespoke.plugins.hash(),
-    bespoke.plugins.backdrop(),
     bespoke.plugins.progress(),
     bespoke.plugins.overview(),
     bespoke.plugins.bullets('.build,.build-items>*:not(.build-items)'),

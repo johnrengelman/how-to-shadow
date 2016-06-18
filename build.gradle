@@ -1,24 +1,51 @@
 buildscript {
+    ext {
+        assetPipelineVersion = '2.9.0'
+    }
     repositories {
+        mavenLocal()
         jcenter()
     }
     dependencies {
+        classpath 'io.ratpack:ratpack-gradle:1.3.3'
         classpath 'com.craigburke.gradle:client-dependencies:1.1.3'
-        classpath 'com.bertramlabs.plugins:asset-pipeline-gradle:2.9.0'
+        classpath "com.bertramlabs.plugins:asset-pipeline-gradle:${assetPipelineVersion}"
         classpath 'org.ajoberstar:gradle-git:1.5.0'
     }
 }
 
-apply plugin: 'jetty'
+apply plugin: 'io.ratpack.ratpack-groovy'
 apply plugin: 'com.craigburke.client-dependencies'
 apply plugin: 'com.bertramlabs.asset-pipeline'
 apply plugin: 'org.ajoberstar.github-pages'
 
 ext {
     githubRepoUri = 'https://github.com/craigburke/bespoke-gradle.git'
+    assetPath = file('src/assets').absolutePath
+    asciidoctorConfig = [
+        header_footer: true,
+        template_dirs: [
+            "${assetPath}/vendor/asciidoctor-bespoke".toString(),
+            "${assetPath}/templates".toString()
+        ],
+        attributes: [ icons: 'font' ]
+    ]
+}
+
+repositories {
+    mavenLocal()
+    jcenter()
+}
+
+dependencies {
+    compile ratpack.dependency("guice")
+    compile "com.bertramlabs.plugins:ratpack-asset-pipeline:${assetPipelineVersion}"
+    assets 'com.craigburke:asciidoctor-asset-pipeline:1.0.0'
 }
 
 clientDependencies {
+    installDir = "${assetPath}/vendor"
+
     npm {
         'bespoke'('1.*')
         'bespoke-classes'('1.*', into: 'bespoke/plugins')
@@ -47,17 +74,9 @@ clientDependencies {
 }
 
 assets {
-    configOptions = [
-        asciidoctor: [
-            header_footer: true,
-            template_dirs: [
-                project.file('src/assets/vendor/asciidoctor-bespoke').absolutePath,
-                project.file('src/assets/templates').absolutePath,
-            ],
-            attributes: [ icons: 'font' ]
-        ]
-    ]
-    excludes = ['**/asciidoctor-bespoke/*', '**/slides/*.adoc']
+    assetsPath = assetPath
+    configOptions = [asciidoctor: asciidoctorConfig]
+    excludes = ['**/*.slim', '**/*.rb', '**/slides/*', '**/code/*']
 }
 
 githubPages {
@@ -73,14 +92,24 @@ githubPages {
     }
 }
 
-jettyRun {
-    httpPort = 9000
-    contextPath = ''
-    webAppSourceDirectory = file('build/assets/')
+run {
+    doFirst {
+        Map ratpackAssetConfig = asciidoctorConfig.findAll { it.key != 'template_dirs' }
+        asciidoctorConfig.template_dirs?.eachWithIndex { String path, int index ->
+            ratpackAssetConfig["template_dirs[${index}]"] = path
+        }
+
+        Map ratpackConfig = [ratpack: [assets:
+           [url: '/', sourcePath: assetPath, assets: [asciidoctor: ratpackAssetConfig]]
+        ]]
+        ConfigObject configObject = new ConfigObject()
+        configObject.putAll(ratpackConfig)
+        systemProperties configObject.toProperties()
+
+    }
 }
 
 publishGhPages.dependsOn assetCompile
-jettyRun.dependsOn assetCompile
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.13'

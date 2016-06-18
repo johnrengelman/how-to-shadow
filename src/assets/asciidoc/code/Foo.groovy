@@ -1,3 +1,3 @@
 class Foo {
-    String bar = 'WUT'
+    String bar = 'WUT?!'
 }
