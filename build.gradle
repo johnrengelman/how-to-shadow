@@ -1,3 +1,5 @@
+import groovy.json.JsonOutput
+
 buildscript {
     ext {
         assetPipelineVersion = '2.9.0'
@@ -22,6 +24,7 @@ apply plugin: 'org.ajoberstar.github-pages'
 ext {
     githubRepoUri = 'https://github.com/craigburke/bespoke-gradle.git'
     assetPath = file('src/assets').absolutePath
+    assetConfigFile = file('build/resources/main/assets.json')
     asciidoctorConfig = [
         header_footer: true,
         template_dirs: [
@@ -92,23 +95,18 @@ githubPages {
     }
 }
 
-run {
-    doFirst {
-        Map ratpackAssetConfig = asciidoctorConfig.findAll { it.key != 'template_dirs' }
-        asciidoctorConfig.template_dirs?.eachWithIndex { String path, int index ->
-            ratpackAssetConfig["template_dirs[${index}]"] = path
-        }
-
-        Map ratpackConfig = [ratpack: [assets:
-           [url: '/', sourcePath: assetPath, assets: [asciidoctor: ratpackAssetConfig]]
-        ]]
-        ConfigObject configObject = new ConfigObject()
-        configObject.putAll(ratpackConfig)
-        systemProperties configObject.toProperties()
-
+task saveAssetConfig() {
+    outputs.file assetConfigFile
+    doLast {
+        assetConfigFile.createNewFile()
+        Map ratpackConfig = [ assets:
+           [url: '/', sourcePath: assetPath, assets: [asciidoctor: asciidoctorConfig]]
+        ]
+        assetConfigFile.text = JsonOutput.toJson(ratpackConfig)
     }
 }
 
+run.dependsOn saveAssetConfig
 publishGhPages.dependsOn assetCompile
 
 task wrapper(type: Wrapper) {

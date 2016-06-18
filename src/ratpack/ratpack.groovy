@@ -5,8 +5,7 @@ import asset.pipeline.ratpack.AssetPipelineModule
 
 ratpack {
     serverConfig {
-        sysProps()
-        env()
+        json('assets.json')
     }
     bindings {
         def config = serverConfig.get("/assets", AssetPipelineModule.Config)
