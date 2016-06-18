@@ -8,9 +8,7 @@ ratpack {
         json('assets.json')
     }
     bindings {
-        def config = serverConfig.get("/assets", AssetPipelineModule.Config)
-        println config.properties
-        moduleConfig(AssetPipelineModule, config)
+        moduleConfig(AssetPipelineModule, serverConfig.get("/assets", AssetPipelineModule.Config))
     }
     handlers {
         all(AssetPipelineHandler)
