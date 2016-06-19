@@ -60,6 +60,7 @@ clientDependencies {
         'bespoke-backdrop'('1.*', into: 'bespoke/plugins')
         'bespoke-bullets'('1.*', into: 'bespoke/plugins')
         'bespoke-state'('1.*', into: 'bespoke/plugins')
+        'bespoke-touch'('1.*', into: 'bespoke/plugins')
         'bespoke-overview'('1.*', into: 'bespoke/plugins', transitive: false)
         'bespoke-theme-cube'('1.*', into: 'bespoke/themes')
         'asciidoctor-bespoke'('*', url: 'asciidoctor/asciidoctor-bespoke', from: 'templates/slim') {

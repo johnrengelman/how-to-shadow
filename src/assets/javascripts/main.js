@@ -7,6 +7,7 @@ bespoke.from("article.deck", [
     bespoke.plugins.keys(),
     bespoke.plugins.scale(),
     bespoke.plugins.classes(),
+    bespoke.plugins.touch(),
     bespoke.plugins.state(),
     bespoke.plugins.hash(),
     bespoke.plugins.progress(),
