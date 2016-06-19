@@ -13,7 +13,8 @@ bespoke.from("article.deck", [
     bespoke.plugins.progress(),
     bespoke.plugins.overview(),
     bespoke.plugins.bullets('.build,.build-items>*:not(.build-items)'),
-    bespoke.plugins.backdrop()
+    bespoke.plugins.backdrop(),
+    bespoke.plugins.fullscreen()
 ]);
 
 hljs.initHighlightingOnLoad();
