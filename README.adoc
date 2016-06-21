@@ -1,4 +1,4 @@
 = Bespoke.js Gradle 
 
 == Run
-`gradlew run`
+`./gradlew run`
