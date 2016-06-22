@@ -1,0 +1,13 @@
+allprojects { p ->
+  p.plugins.withId('com.github.johnrengelman.shadow') {
+    p.plugins.withId('java') {
+      task jarContent(dependsOn: p.tasks.shadowJar) {
+        doFirst {
+          def jar = new java.util.jar.JarFile(p.tasks.shadowJar.archivePath)
+          jar.entries().each { println it.name }
+          jar.close()
+        }
+      }
+    }
+  }
+}

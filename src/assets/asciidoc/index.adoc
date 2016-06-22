@@ -1,11 +1,9 @@
-= My Presentation: Bespoke, AsciiDoctor, and Gradle
+= DISTRIBUTION PACKAGING W/ SHADOW
 
-include::slides/slide1.adoc[]
+include::slides/01-about.adoc[]
 
-include::slides/slide2.adoc[]
+include::slides/02-info.adoc[]
 
-include::slides/slide3.adoc[]
+include::slides/03-examples.adoc[]
 
-include::slides/slide4.adoc[]
-
-include::slides/slide5.adoc[]
+include::slides/04-closing.adoc[]

@@ -1,3 +1,0 @@
-== Party Time
-
-image::parrot.gif[]

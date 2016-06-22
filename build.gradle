@@ -82,7 +82,7 @@ clientDependencies {
 assets {
     assetsPath = assetPath
     configOptions = [asciidoctor: asciidoctorConfig]
-    excludes = ['**/*.slim', '**/*.rb', '**/slides/*', '**/code/*']
+    excludes = ['**/*.slim', '**/*.rb', '**/slides/*', '**/code/**']
 }
 
 githubPages {

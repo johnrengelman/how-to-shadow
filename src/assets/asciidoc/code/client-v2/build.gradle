@@ -1,0 +1,9 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+group = 'shadow'
+version = '2.0.0'
+
+jar {
+  baseName = 'client'
+}

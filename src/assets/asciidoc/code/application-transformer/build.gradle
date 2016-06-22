@@ -1,0 +1,52 @@
+// tag::apply[]
+plugins {
+  id 'java'
+  id 'application'
+  id 'com.github.johnrengelman.shadow' version '1.2.3'
+}
+
+import com.github.jengelman.gradle.plugins.shadow.transformers.*
+// end::apply[]
+
+// tag::application[]
+mainClassName = 'shadow.App'
+// end::application[]
+
+repositories {
+  mavenLocal()
+}
+
+// tag::dependencies[]
+dependencies {
+  compile 'shadow:client:1.0.0'
+  compile 'shadow:client-additional:1.0.0'
+}
+// end::dependencies[]
+
+compileJava.dependsOn tasks.getByPath(':client-v1:install'), tasks.getByPath(':client-additional:install')
+
+// tag::mergeService[]
+shadowJar {
+  mergeServiceFiles()
+}
+// end::mergeService[]
+
+// tag::transforms[]
+shadowJar {
+  mergeGroovyExtensionModules()
+  append 'META-INF/LICENSE'
+  transform(XmlAppendingTransformer) {
+    resource = 'properties.xml'
+  }
+}
+// end::transforms[]
+
+task showServices(dependsOn: tasks.shadowJar) {
+  doFirst {
+    project.copy {
+      from project.zipTree(tasks.shadowJar.archivePath)
+      into "${buildDir}/tmp"
+    }
+    println file("${buildDir}/tmp/META-INF/services/shadow.client.Version").text
+  }
+}

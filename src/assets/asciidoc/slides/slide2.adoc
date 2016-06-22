@@ -1,6 +1,0 @@
-== Some Groovy Code
-
-[source,groovy]
-----
-include::code/Foo.groovy[]
-----

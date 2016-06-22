@@ -1,0 +1,42 @@
+plugins {
+  id 'java'
+  id 'maven-publish'
+  id 'com.github.johnrengelman.shadow' version '1.2.3'
+}
+
+group = 'shadow'
+version = '1.0.0'
+
+repositories {
+  mavenLocal()
+}
+
+dependencies {
+  compile 'shadow:client:2.0.0'
+}
+
+// tag::relocate[]
+shadowJar {
+  relocate 'shadow.client', 'adapter.shadow.client'
+}
+// end::relocate[]
+
+// tag::rename[]
+shadowJar {
+  baseName = "${project.name}-all" // <1>
+  classifier = "" // <2>
+}
+// end::rename[]
+
+// tag::publish[]
+publishing {
+  publications {
+    shadow(MavenPublication) {
+      from components.shadow
+      artifactId "${project.name}-all"
+    }
+  }
+}
+// end::publish[]
+
+compileJava.dependsOn tasks.getByPath(':client-v2:install')
