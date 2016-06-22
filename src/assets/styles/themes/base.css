@@ -16,6 +16,10 @@ body, .bespoke-slide figure {
     margin: 0
 }
 
+figure.canvas {
+    display: none;
+}
+
 *, ::after, ::before {
     box-sizing: inherit
 }
@@ -28,11 +32,11 @@ body, .bespoke-slide figure {
     font-size: 25px;
     line-height: 2;
     color: #000;
-    background-color: #000
+    background-color: #000;
 }
 
 .deck section:not(.bespoke-slide), .deck:not(.bespoke-parent) {
-    display: none
+    display: none;
 }
 
 .bespoke-parent, .bespoke-scale-parent {
@@ -40,7 +44,7 @@ body, .bespoke-slide figure {
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0
+    bottom: 0;
 }
 
 .bespoke-parent {
@@ -68,32 +72,28 @@ body, .bespoke-slide figure {
 
 .bespoke-active {
     pointer-events: auto;
-    opacity: 1
+    opacity: 1;
 }
 
 .bespoke-slide h1, .bespoke-slide h2 {
     font-family: sans-serif;
     font-size: 2em;
     line-height: 1em;
-    color: #666;
-    margin: 0 0 37px
+    color: #333;
+    margin: 0 0 1em;
 }
 
 .bespoke-slide ol, .bespoke-slide p, .bespoke-slide ul {
-    margin: 0 0 2em
+    margin: 0 0 2em;
 }
 
 .bespoke-slide figcaption, .bespoke-slide li, .bespoke-slide p {
-    line-height: 2em
-}
-
-.bespoke-slide p.note {
-    color: #bbb
+    line-height: 2em;
 }
 
 .bespoke-slide blockquote {
     margin: 0;
-    font-style: italic
+    font-style: italic;
 }
 
 .bespoke-slide blockquote::before {
@@ -103,71 +103,37 @@ body, .bespoke-slide figure {
     font-size: 8em;
     line-height: 1;
     content: "\201c";
-    font-style: normal
+    font-style: normal;
 }
 
 .bespoke-slide figcaption {
     margin: -2em 0 2em;
     font-weight: 700;
-    font-style: italic
+    font-style: italic;
 }
 
 .bespoke-slide ol, .bespoke-slide ul {
     padding: 0;
-    list-style: none
-}
-
-.bespoke-slide ol li, .bespoke-slide ul li {
-    text-indent: -2em
 }
 
 .bespoke-slide ol li::before, .bespoke-slide ul li::before {
     display: inline-block;
     width: 2em;
-    color: #bbb;
-    text-align: right
+    text-align: right;
 }
 
 .bespoke-slide ol ol, .bespoke-slide ol ul, .bespoke-slide ul ol, .bespoke-slide ul ul {
-    margin: 0 0 0 2em
-}
-
-.bespoke-slide a {
-    color: #4b86c2;
-    text-decoration: none;
-    background: linear-gradient(to top, currentColor, currentColor .09em, rgba(255, 255, 255, 0) .09em, rgba(255, 255, 255, 0)) repeat-x
-}
-
-.bespoke-slide h2 a {
-    background: linear-gradient(to top, currentColor, currentColor .11em, rgba(255, 255, 255, 0) .11em, rgba(255, 255, 255, 0)) repeat-x
+    margin: 0 0 0 2em;
 }
 
 .bespoke-slide code, .bespoke-slide pre {
-    font-family: "PT Mono", monospace
-}
-
-.bespoke-slide :not(pre) > code, .bespoke-slide mark {
-    border-radius: 8px;
-    padding: 3px 8px
-}
-
-.bespoke-slide :not(pre) > code {
-    background-color: rgba(0, 0, 0, .07)
-}
-
-.bespoke-slide mark {
-    background-color: #fafaa2
+    font-family: monospace;
 }
 
 .bespoke-slide pre {
     margin: 0 0 2em;
-    counter-reset: code;
     white-space: normal;
     line-height: 2em;
-}
-
-.bespoke-slide pre.screen {
-    white-space: pre;
 }
 
 .bespoke-slide pre code {
@@ -175,22 +141,6 @@ body, .bespoke-slide figure {
     white-space: pre;
     line-height: 1.5em;
     font-size: .75em;
-}
-
-.bespoke-slide pre mark.comment, .bespoke-slide pre span.comment {
-    color: #999;
-    background-color: transparent;
-    padding: 0;
-}
-
-.bespoke-slide pre mark.important, .bespoke-slide pre span.important {
-    background-color: #c00;
-    color: #fff
-}
-
-.bespoke-slide pre span.important {
-    border-radius: 8px;
-    padding: 3px 8px
 }
 
 .bespoke-slide table {
@@ -229,7 +179,6 @@ body, .bespoke-slide figure {
 }
 
 .bespoke-slide.title h1 {
-    margin: 30px 0 0;
     font-size: 2.8em
 }
 
@@ -293,7 +242,7 @@ body, .bespoke-slide figure {
 }
 
 .bespoke-overview .bespoke-title h1 {
-    font-family: "PT Sans Narrow", sans-serif;
+    font-family: sans-serif;
     font-size: 6.5em;
     line-height: 1em;
     color: #3c3d40;
@@ -331,55 +280,4 @@ body, .bespoke-slide figure {
     height: 100%;
     background: #ccc;
     transition: width .6s ease;
-}
-
-/*********************************************
- * Overview
- *********************************************/
-.bespoke-overview {
-    -ms-overflow-style: none;
-    background: #585a5e url('linen-2x.png') 0% 0%/256px auto
-}
-
-.bespoke-overview::-webkit-scrollbar {
-    width: 0
-}
-
-.bespoke-overview .bespoke-slide {
-    box-shadow: 0 0 120px rgba(0, 0, 0, .005), 0 80px 200px rgba(42, 43, 45, .6)
-}
-
-.bespoke-overview .bespoke-slide:hover {
-    box-shadow: 0 0 0 40px rgba(42, 43, 45, .3), 0 80px 200px rgba(42, 43, 45, .6);
-    border-radius: 4px
-}
-
-.bespoke-overview .bespoke-active {
-    box-shadow: 0 0 0 4px #376da3, 0 0 0 40px #4b86c2, 0 80px 200px rgba(42, 43, 45, .6) !important;
-    outline: none;
-    border-radius: 4px
-}
-
-.bespoke-overview-counter .bespoke-active::after {
-    color: #4b86c2;
-    text-shadow: 0 2px 2px rgba(42, 43, 45, .6)
-}
-
-.bespoke-overview .bespoke-title {
-    padding: 275px 300px 0;
-    pointer-events: auto
-}
-
-.bespoke-overview .bespoke-title h1 {
-    font-family: "PT Sans Narrow", sans-serif;
-    font-size: 6.5em;
-    line-height: 1em;
-    color: #3c3d40;
-    text-shadow: 0 .02em .02em #8d8e90;
-    text-align: left
-}
-
-
-figure.canvas {
-    display: none;
 }
