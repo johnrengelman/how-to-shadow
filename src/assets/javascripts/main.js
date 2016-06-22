@@ -13,6 +13,7 @@
         bespoke.plugins.state(),
         bespoke.plugins.hash(),
         bespoke.plugins.overview({margin: 300, title: true, numbers: true}),
+        bespoke.plugins.touch(),
         bespoke.plugins.backdrop(),
         bespoke.plugins.progress(),
         bespoke.plugins.fullscreen()
