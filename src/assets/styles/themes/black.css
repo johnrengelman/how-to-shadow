@@ -12,14 +12,26 @@ body {
     background-color: #222;
 }
 
+
+.deck {
+    font-family: sans-serif;
+    font-size: 25px;
+    line-height: 2;
+    color: #000;
+    background-color: #222;
+}
+
+
 .bespoke-parent {
     font-family: "Source Sans Pro", Helvetica, sans-serif;
-    font-size: 38px;
     font-weight: normal;
     color: #fff;
     background: #222;
     background-color: #222;
 }
+
+
+
 
 /*********************************************
  * HEADERS
@@ -30,11 +42,10 @@ body {
 .bespoke-slide h4,
 .bespoke-slide h5,
 .bespoke-slide h6 {
-    margin: 0 0 20px 0;
     color: #fff;
     font-family: "Source Sans Pro", Helvetica, sans-serif;
     font-weight: 600;
-    line-height: 1.2;
+    line-height: 1.2em;
     letter-spacing: normal;
     text-transform: uppercase;
     text-shadow: none;
@@ -127,19 +138,6 @@ body {
 
 .bespoke-slide q {
     font-style: italic;
-}
-
-.bespoke-slide pre {
-    display: block;
-    position: relative;
-    width: 90%;
-    margin: 20px auto;
-    text-align: left;
-    font-size: 0.55em;
-    font-family: monospace;
-    line-height: 1.2em;
-    word-wrap: break-word;
-    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
 }
 
 .bespoke-slide code {
