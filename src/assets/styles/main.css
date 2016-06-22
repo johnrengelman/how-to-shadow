@@ -31,3 +31,15 @@ article.parrot h2 {
     50%{background-position:100% 50%}
     100%{background-position:0% 50%}
 }
+
+.bespoke-slide .colist table {
+  border-collapse:collapse;
+}
+
+.bespoke-slide .colist table td, .bespoke-slide .colist table th {
+  background: none;
+}
+
+.bespoke-slide code, .bespoke-slide pre {
+  font-size: .8em;
+}

@@ -1,0 +1,8 @@
+== About Me
+
+[%build]
+* icon:user[] Chief Technologist - Object Partners
+* icon:globe[] http://www.objectpartners.com
+* icon:globe[] http://imperceptiblethoughts.com
+* icon:twitter[] @johnrengelman
+* icon:github[] johnrengelman

@@ -1,0 +1,29 @@
+== What is Shadow?
+
+== Simple Answer
+
+Fat (uber) JAR Creator
+
+== Detailed Answer
+
+[%build]
+* Dependency exploded/combiner
+* File filter/transformer
+* Package relocator
+
+== Downloads
+
+== !
+
+[.contain.canvas, .text-center]
+image::Shadow-pre-1.0.png[]
+
+== !
+
+[.contain.canvas, .text-center]
+image::Shadow-post-1.0.png[]
+
+== > 1,000,000 !!!
+
+* 928K from bintray since 1st version published.
+* No data from Gradle Plugin portal

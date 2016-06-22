@@ -1,0 +1,43 @@
+plugins {
+  id 'java'
+  id 'maven'
+  id 'com.github.johnrengelman.shadow' version '1.2.3'
+}
+
+group = 'shadow'
+version = '1.0.0'
+
+repositories {
+  mavenLocal()
+}
+
+dependencies {
+  compile 'shadow:client:2.0.0'
+}
+
+// tag::relocate[]
+shadowJar {
+  relocate 'shadow.client', 'adapter.shadow.client'
+}
+// end::relocate[]
+
+// tag::toplevel[]
+shadowJar {
+  baseName = 'client-adapter-all'
+  classifier = ''
+}
+// end::toplevel[]
+
+task installShadow(type: Upload) {
+  configuration = project.configurations.shadow
+  repositories {
+    mavenInstaller {
+      pom.artifactId = 'client-adapter-all'
+      pom.scopeMappings.mappings.remove(project.configurations.compile)
+      pom.scopeMappings.mappings.remove(project.configurations.runtime)
+      pom.scopeMappings.addMapping(MavenPlugin.RUNTIME_PRIORITY, project.configurations.shadow, Conf2ScopeMappingContainer.RUNTIME)
+    }
+  }
+}
+
+compileJava.dependsOn tasks.getByPath(':client-v2:install')

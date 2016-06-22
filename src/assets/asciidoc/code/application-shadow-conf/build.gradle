@@ -1,0 +1,30 @@
+// tag::apply[]
+plugins {
+  id 'java'
+  id 'application'
+  id 'com.github.johnrengelman.shadow' version '1.2.3'
+}
+// end::apply[]
+
+// tag::application[]
+mainClassName = 'shadow.App'
+// end::application[]
+
+repositories {
+  mavenLocal()
+}
+
+// tag::dependencies[]
+dependencies {
+  compile 'shadow:client-adapter:1.0.0'
+  shadow 'shadow:runtime-library:1.0.0' //<1>
+}
+// end::dependencies[]
+
+// tag::classpath[]
+tasks.withType(AbstractCompile) {
+  classpath += project.configurations.shadow // <1>
+}
+// end::classpath[]
+
+compileJava.dependsOn tasks.getByPath(':runtime-library:install'), tasks.getByPath(':client-adapter:install')

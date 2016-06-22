@@ -1,0 +1,17 @@
+plugins {
+  id 'java'
+  id 'application'
+}
+
+repositories {
+  mavenLocal()
+}
+
+mainClassName = 'shadow.App'
+
+// tag::dependencies[]
+dependencies {
+  compile 'shadow:client:1.0.0'
+  compile project(path: ":client-adapter-v3", configuration: 'shadow') //<1>
+}
+// end::dependencies[]

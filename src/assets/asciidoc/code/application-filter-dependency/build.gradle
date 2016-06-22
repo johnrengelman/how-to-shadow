@@ -1,0 +1,38 @@
+// tag::apply[]
+plugins {
+  id 'java'
+  id 'application'
+  id 'com.github.johnrengelman.shadow' version '1.2.3'
+}
+// end::apply[]
+
+// tag::application[]
+mainClassName = 'shadow.App'
+// end::application[]
+
+repositories {
+  mavenLocal()
+}
+
+// tag::dependencies[]
+dependencies {
+  compile 'shadow:client:1.0.0'
+  compile 'shadow:client-adapter:1.0.0'
+}
+// end::dependencies[]
+
+// tag::config[]
+shadowJar {
+  classifier = 'shadow' // <1>
+}
+// end::config[]
+
+// tag::excludeDep[]
+shadowJar {
+  dependencies {
+    exclude(dependency('shadow:client'))
+  }
+}
+// end::excludeDep[]
+
+compileJava.dependsOn tasks.getByPath(':client-v1:install'), tasks.getByPath(':client-adapter:install')

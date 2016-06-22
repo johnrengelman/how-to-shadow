@@ -1,0 +1,305 @@
+== Adding Shadow
+
+[source,gradle]
+----
+include::code/application/build.gradle[tags=apply]
+----
+
+== !
+
+[source,bash]
+----
+$ gradle application:shadowJar && \
+  java -jar application/build/libs/application-shadow.jar
+Client Version 1.0.0
+----
+
+== Configuring the task
+
+[source,gradle]
+----
+include::code/application/build.gradle[tags=config]
+----
+<1> Change the default of `all`
+
+== Integration with Application
+
+[source,gradle]
+----
+include::code/application/build.gradle[tags=application]
+----
+
+== !
+
+[source,bash]
+----
+$ gradle runShadow
+$ gradle distShadowTar
+$ gradle distShadowZip
+----
+
+== Filtering Files
+
+Use the standard methods from `Jar` task
+
+== !
+
+[source,gradle]
+----
+include::code/application-v2/build.gradle[tags=excludeFile]
+----
+
+
+== !
+
+[source,bash]
+----
+$ gradle application-v2:jarContent
+META-INF/
+META-INF/MANIFEST.MF
+shadow/
+shadow/App.class
+shadow/AdapterVersion.class
+shadow/client/
+shadow/client/Version.class
+shadow/Version.class
+----
+
+== Filtering Dependencies
+
+Use the `dependencies{}` block
+
+== !
+
+[source,gradle]
+----
+include::code/application-filter-dependency/build.gradle[tags=excludeDep]
+----
+
+== !
+
+[source,bash]
+----
+$ gradle :application-filter-dependency:jarContent
+META-INF/
+META-INF/MANIFEST.MF
+shadow/
+shadow/AdapterVersion.class
+adapter.properties
+----
+
+== !
+
+* Dependency Filters are explicit per dependency
+* This means, you **must** exclude transitive deps explicitly
+
+== Shadow Configuration
+
+`project.configurations.shadow` holds runtime dependencies that are **not** merged
+
+== !
+
+[source,gradle]
+----
+include::code/application-shadow-conf/build.gradle[tags=dependencies]
+----
+<1> This library will not be merged into the JAR
+
+== !
+
+[source,gradle]
+----
+include::code/application-shadow-conf/build.gradle[tags=classpath]
+----
+<1> `configurations.shadow` is not added to the compile classpath by default
+
+== !
+
+[source,bash]
+----
+$ gradle :application-shadow-conf:jarContent \
+    :application-shadow-conf:runShadow
+META-INF/
+META-INF/MANIFEST.MF
+shadow/
+shadow/App.class
+shadow/AdapterVersion.class
+adapter.properties
+shadow/client/
+shadow/client/Version.class
+shadow/Version.class
+
+Adapter: Client Version 2.0.0
+Executing runtime code!
+----
+
+== JAR Transformations
+
+== Service Descriptors
+
+[source,gradle]
+----
+include::code/application-transformer/build.gradle[tags=mergeService]
+----
+
+== !
+
+[source,bash]
+----
+$ gradle application-transformer:showServices
+1.0.0
+1.0.0-additional
+----
+
+== Other transforms
+
+[source,gradle]
+----
+include::code/application-transformer/build.gradle[tags=transforms]
+----
+
+== Package Relocation
+
+== Conflicting dependencies
+
+[graphviz, dot-example, svg]
+----
+digraph g {
+    clienta[label="client:v1.0.0"]
+    clientb[label="client:v2.0.0"]
+    adapter[label="adapter:v1.0.0"]
+    adapter -> clientb
+    application -> adapter
+    application -> clienta
+    rankdir=BT
+    {rank=same;clienta,clientb}
+}
+----
+
+== !
+
+[source,gradle]
+----
+include::code/application-v2/build.gradle[tags=dependencies]
+----
+
+== !
+
+[source,java]
+----
+include::code/application-v2/src/main/java/shadow/App.java[tags=main]
+----
+
+== !
+[source,bash]
+----
+$ gradle application-v2:runShadow
+Adapter: Client Version 2.0.0
+Client Version 2.0.0
+----
+
+== Relocate
+
+[source,gradle]
+----
+include::code/client-adapter/build.gradle[tags=relocate]
+----
+
+== Update Dependency
+
+[source,gradle]
+----
+include::code/application-v3/build.gradle[tags=dependencies]
+----
+
+== !
+
+[source,bash]
+----
+$ gradle application-v3:runShadow
+Adapter: Client Version 2.0.0
+Client Version 1.0.0
+----
+
+== Publishing Shadow JARs
+
+Simply apply Maven or Maven-Publish
+
+(ivy-publishing untested)
+
+== With Maven-Publish Plugin
+
+[source,gradle]
+----
+include::code/client-adapter-v2/build.gradle[tags=publish]
+----
+
+== !
+
+[source,bash]
+----
+$ gradle :client-adapter-v2:publishToMavenLocal
+$ ls ~/.m2/repositories/shadow/client-adapter-v2/1.0.0/
+client-adapter-v2-1.0.0-all.jar <1>
+client-adapter-v2-1.0.0.pom
+----
+<1> Notice the use of an artifact classifier
+
+== Producing a Top Level Artifact w/ Shadow
+
+== With Maven-Publish Plugin
+
+== First, Configure ShadowJar
+[source,gradle]
+----
+include::code/client-adapter-v3/build.gradle[tags=rename]
+----
+<1> Override the baseName to not step on JAR output
+<2> Remove the classifier as this will be a root artifact
+
+
+== Then Configure Publishing
+
+[source,gradle]
+----
+include::code/client-adapter-v3/build.gradle[tags=publish]
+----
+
+== !
+
+[source,bash]
+----
+$ gradle :client-adapter-v3:publishToMavenLocal
+$ ls ~/.m2/repositories/shadow/client-adapter-v3-all/1.0.0/
+client-adapter-v3-all-1.0.0.jar
+client-adapter-v3-all-1.0.0.pom
+----
+
+== With Maven Plugin
+
+
+[source,gradle]
+----
+include::code/client-adapter/build.gradle[tags=toplevel]
+----
+
+== Multi-Projects
+
+Use the `Map` notation for a project dependency
+
+== !
+
+[source,gradle]
+----
+include::code/multi-app/build.gradle[tags=dependencies]
+----
+<1> Depend on the `shadow` configuration from the project
+
+== !
+
+[source,bash]
+----
+$ gradle :multi-app:run
+Adapter: Client Version 2.0.0
+Client Version 1.0.0
+----

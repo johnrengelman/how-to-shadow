@@ -5,3 +5,4 @@
 /build
 /buildSrc/build
 src/assets/vendor
+src/assets/asciidoc/code/**/build/
