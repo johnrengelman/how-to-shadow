@@ -64,7 +64,6 @@ clientDependencies {
         'bespoke-fullscreen'('1.*', into: 'bespoke/plugins')
         'bespoke-touch'('1.*', into: 'bespoke/plugins')
         'bespoke-overview'('1.*', into: 'bespoke/plugins', transitive: false)
-        'bespoke-nav'('1.*', into: 'bespoke/plugins')
         'asciidoctor-bespoke'('*', url: 'asciidoctor/asciidoctor-bespoke', from: 'templates/slim') {
             include '*'
         }

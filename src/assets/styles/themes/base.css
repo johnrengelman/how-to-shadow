@@ -1,5 +1,5 @@
 /*
-*= require normalizecss/normalize
+*= require normalize.css/normalize
 */
 
 /*********************************************
@@ -163,23 +163,24 @@ body, .bespoke-slide figure {
     margin: 0 0 2em;
     counter-reset: code;
     white-space: normal;
-    line-height: 2em
+    line-height: 2em;
 }
 
 .bespoke-slide pre.screen {
-    white-space: pre
+    white-space: pre;
 }
 
 .bespoke-slide pre code {
     display: block;
     white-space: pre;
-    line-height: 2em
+    line-height: 1.5em;
+    font-size: .75em;
 }
 
 .bespoke-slide pre mark.comment, .bespoke-slide pre span.comment {
     color: #999;
     background-color: transparent;
-    padding: 0
+    padding: 0;
 }
 
 .bespoke-slide pre mark.important, .bespoke-slide pre span.important {
@@ -298,6 +299,20 @@ body, .bespoke-slide figure {
     color: #3c3d40;
     text-shadow: 0 .02em .02em #8d8e90;
     text-align: left
+}
+
+
+.bespoke-bullet:not(.bespoke-bullet-active) {
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.fade .bespoke-bullet-active:not(.bespoke-bullet-current) {
+    opacity: 0.1;
+}
+
+.vanish .bespoke-bullet-active:not(.bespoke-bullet-current) {
+    visibility: hidden;
 }
 
 /*********************************************
