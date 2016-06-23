@@ -17,10 +17,19 @@ buildscript {
     }
 }
 
+plugins {
+    id 'com.gradle.build-scan' version '1.0'
+}
+
 apply plugin: 'io.ratpack.ratpack-groovy'
 apply plugin: 'com.craigburke.client-dependencies'
 apply plugin: 'com.bertramlabs.asset-pipeline'
 apply plugin: 'org.ajoberstar.github-pages'
+
+buildScan {
+    licenseAgreementUrl = 'https://gradle.com/terms-of-service'
+    licenseAgree = 'yes'
+}
 
 ext {
     githubRepoUri = 'https://github.com/johnrengelman/how-to-shadow.git'
@@ -33,7 +42,7 @@ ext {
             "${assetPath}/templates" as String
         ],
         attributes: [ icons: 'font',
-                      imagesoutdir: "${assetPath}/images" as String ]
+                      imagesoutdir: "${assetPath}/images" as String]
     ]
 }
 
