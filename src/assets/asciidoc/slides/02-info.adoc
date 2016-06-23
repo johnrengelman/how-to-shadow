@@ -1,3 +1,8 @@
+== Presentation
+
+* icon:github[] https://github.com/johnrengelman/how-to-shadow
+* icon:globe[] http://impercetiblethoughts.com/how-to-shadow
+
 == What is Shadow?
 
 == Simple Answer
