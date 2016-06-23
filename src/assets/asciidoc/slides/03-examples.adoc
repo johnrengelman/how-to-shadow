@@ -1,5 +1,6 @@
 == Adding Shadow
 
+.application/build.gradle
 [source,gradle]
 ----
 include::code/application/build.gradle[tags=apply]
@@ -16,6 +17,7 @@ Client Version 1.0.0
 
 == Configuring the task
 
+.application/build.gradle
 [source,gradle]
 ----
 include::code/application/build.gradle[tags=config]
@@ -24,6 +26,7 @@ include::code/application/build.gradle[tags=config]
 
 == Integration with Application
 
+.application/build.gradle
 [source,gradle]
 ----
 include::code/application/build.gradle[tags=application]
@@ -44,6 +47,7 @@ Use the standard methods from `Jar` task
 
 == !
 
+.application-resolved-versions/build.gradle
 [source,gradle]
 ----
 include::code/application-resolved-versions/build.gradle[tags=excludeFile]
@@ -73,6 +77,7 @@ Use the `dependencies{}` block
 
 == !
 
+.application-filter-dependency/build.gradle
 [source,gradle]
 ----
 include::code/application-filter-dependency/build.gradle[tags=excludeDep]
@@ -103,6 +108,7 @@ META-INF/services/shadow.client.Version
 
 == !
 
+.application-shadow-conf/build.gradle
 [source,gradle]
 ----
 include::code/application-shadow-conf/build.gradle[tags=dependencies]
@@ -111,6 +117,7 @@ include::code/application-shadow-conf/build.gradle[tags=dependencies]
 
 == !
 
+.application-shadow-conf/build.gradle
 [source,gradle]
 ----
 include::code/application-shadow-conf/build.gradle[tags=classpath]
@@ -143,6 +150,7 @@ Executing runtime code!
 
 == Service Descriptors
 
+.application-transformer/build.gradle
 [source,gradle]
 ----
 include::code/application-transformer/build.gradle[tags=mergeService]
@@ -159,6 +167,7 @@ $ gradle application-transformer:showServices
 
 == Other transforms
 
+.application-transformer/build.gradle
 [source,gradle]
 ----
 include::code/application-transformer/build.gradle[tags=transforms]
@@ -184,6 +193,7 @@ digraph g {
 
 == !
 
+.application-resolved-versions/build.gradle
 [source,gradle]
 ----
 include::code/application-resolved-versions/build.gradle[tags=dependencies]
@@ -191,6 +201,7 @@ include::code/application-resolved-versions/build.gradle[tags=dependencies]
 
 == !
 
+.application-resolved-versions/src/main/java/shadow/App.java
 [source,java]
 ----
 include::code/application-resolved-versions/src/main/java/shadow/App.java[tags=main]
@@ -206,6 +217,7 @@ Client Version 2.0.0
 
 == Relocate
 
+.client-adapter/build.gradle
 [source,gradle]
 ----
 include::code/client-adapter/build.gradle[tags=relocate]
@@ -213,6 +225,7 @@ include::code/client-adapter/build.gradle[tags=relocate]
 
 == Update Dependency
 
+.application-adapter-all/build.gradle
 [source,gradle]
 ----
 include::code/application-adapter-all/build.gradle[tags=dependencies]
@@ -235,6 +248,7 @@ Simply apply Maven or Maven-Publish
 
 == With Maven-Publish Plugin
 
+.client-adapter-maven-publish/build.gradle
 [source,gradle]
 ----
 include::code/client-adapter-maven-publish/build.gradle[tags=publish]
@@ -256,6 +270,8 @@ client-adapter-maven-publish-1.0.0.pom
 == With Maven-Publish Plugin
 
 == First, Configure ShadowJar
+
+.client-adapter-relocate/build.gradle
 [source,gradle]
 ----
 include::code/client-adapter-relocate/build.gradle[tags=rename]
@@ -266,6 +282,7 @@ include::code/client-adapter-relocate/build.gradle[tags=rename]
 
 == Then Configure Publishing
 
+.client-adapter-relocate/build.gradle
 [source,gradle]
 ----
 include::code/client-adapter-relocate/build.gradle[tags=publish]
@@ -283,7 +300,7 @@ client-adapter-relocate-all-1.0.0.pom
 
 == With Maven Plugin
 
-
+.client-adapter/build.gradle
 [source,gradle]
 ----
 include::code/client-adapter/build.gradle[tags=toplevel]
@@ -295,6 +312,7 @@ Use the `Map` notation for a project dependency
 
 == !
 
+.multi-app/build.gradle
 [source,gradle]
 ----
 include::code/multi-app/build.gradle[tags=dependencies]
