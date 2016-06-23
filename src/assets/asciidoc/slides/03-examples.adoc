@@ -46,7 +46,7 @@ Use the standard methods from `Jar` task
 
 [source,gradle]
 ----
-include::code/application-v2/build.gradle[tags=excludeFile]
+include::code/application-resolved-versions/build.gradle[tags=excludeFile]
 ----
 
 
@@ -54,12 +54,14 @@ include::code/application-v2/build.gradle[tags=excludeFile]
 
 [source,bash]
 ----
-$ gradle application-v2:jarContent
+$ gradle application-resolved-versions:jarContent
 META-INF/
 META-INF/MANIFEST.MF
 shadow/
 shadow/App.class
 shadow/AdapterVersion.class
+META-INF/services/
+META-INF/services/shadow.client.Version
 shadow/client/
 shadow/client/Version.class
 shadow/Version.class
@@ -86,6 +88,8 @@ META-INF/MANIFEST.MF
 shadow/
 shadow/AdapterVersion.class
 adapter.properties
+META-INF/services/
+META-INF/services/shadow.client.Version
 ----
 
 == !
@@ -125,6 +129,8 @@ shadow/
 shadow/App.class
 shadow/AdapterVersion.class
 adapter.properties
+META-INF/services/
+META-INF/services/shadow.client.Version
 shadow/client/
 shadow/client/Version.class
 shadow/Version.class
@@ -180,20 +186,20 @@ digraph g {
 
 [source,gradle]
 ----
-include::code/application-v2/build.gradle[tags=dependencies]
+include::code/application-resolved-versions/build.gradle[tags=dependencies]
 ----
 
 == !
 
 [source,java]
 ----
-include::code/application-v2/src/main/java/shadow/App.java[tags=main]
+include::code/application-resolved-versions/src/main/java/shadow/App.java[tags=main]
 ----
 
 == !
 [source,bash]
 ----
-$ gradle application-v2:runShadow
+$ gradle application-resolved-versions:runShadow
 Adapter: Client Version 2.0.0
 Client Version 2.0.0
 ----
@@ -209,14 +215,14 @@ include::code/client-adapter/build.gradle[tags=relocate]
 
 [source,gradle]
 ----
-include::code/application-v3/build.gradle[tags=dependencies]
+include::code/application-adapter-all/build.gradle[tags=dependencies]
 ----
 
 == !
 
 [source,bash]
 ----
-$ gradle application-v3:runShadow
+$ gradle application-adapter-all:runShadow
 Adapter: Client Version 2.0.0
 Client Version 1.0.0
 ----
@@ -231,17 +237,17 @@ Simply apply Maven or Maven-Publish
 
 [source,gradle]
 ----
-include::code/client-adapter-v2/build.gradle[tags=publish]
+include::code/client-adapter-maven-publish/build.gradle[tags=publish]
 ----
 
 == !
 
 [source,bash]
 ----
-$ gradle :client-adapter-v2:publishToMavenLocal
-$ ls ~/.m2/repositories/shadow/client-adapter-v2/1.0.0/
-client-adapter-v2-1.0.0-all.jar <1>
-client-adapter-v2-1.0.0.pom
+$ gradle :client-adapter-maven-publish:publishToMavenLocal
+$ ls ~/.m2/repositories/shadow/client-adapter-maven-publish/1.0.0/
+client-adapter-maven-publish-1.0.0-all.jar <1>
+client-adapter-maven-publish-1.0.0.pom
 ----
 <1> Notice the use of an artifact classifier
 
@@ -252,7 +258,7 @@ client-adapter-v2-1.0.0.pom
 == First, Configure ShadowJar
 [source,gradle]
 ----
-include::code/client-adapter-v3/build.gradle[tags=rename]
+include::code/client-adapter-relocate/build.gradle[tags=rename]
 ----
 <1> Override the baseName to not step on JAR output
 <2> Remove the classifier as this will be a root artifact
@@ -262,17 +268,17 @@ include::code/client-adapter-v3/build.gradle[tags=rename]
 
 [source,gradle]
 ----
-include::code/client-adapter-v3/build.gradle[tags=publish]
+include::code/client-adapter-relocate/build.gradle[tags=publish]
 ----
 
 == !
 
 [source,bash]
 ----
-$ gradle :client-adapter-v3:publishToMavenLocal
-$ ls ~/.m2/repositories/shadow/client-adapter-v3-all/1.0.0/
-client-adapter-v3-all-1.0.0.jar
-client-adapter-v3-all-1.0.0.pom
+$ gradle :client-adapter-relocate:publishToMavenLocal
+$ ls ~/.m2/repositories/shadow/client-adapter-relocate-all/1.0.0/
+client-adapter-relocate-all-1.0.0.jar
+client-adapter-relocate-all-1.0.0.pom
 ----
 
 == With Maven Plugin

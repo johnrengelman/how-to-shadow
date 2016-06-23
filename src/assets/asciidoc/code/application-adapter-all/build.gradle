@@ -7,7 +7,7 @@ plugins {
 // end::apply[]
 
 // tag::application[]
-
+mainClassName = 'shadow.App'
 // end::application[]
 
 repositories {
@@ -17,7 +17,7 @@ repositories {
 // tag::dependencies[]
 dependencies {
   compile 'shadow:client:1.0.0'
-  compile 'shadow:client-adapter:1.0.0'
+  compile 'shadow:client-adapter-all:1.0.0'
 }
 // end::dependencies[]
 
@@ -27,10 +27,4 @@ shadowJar {
 }
 // end::config[]
 
-// tag::excludeFile[]
-shadowJar {
-  exclude 'adapter.properties'
-}
-// end::excludeFile[]
-
-compileJava.dependsOn tasks.getByPath(':client-v1:install'), tasks.getByPath(':client-adapter:install')
+compileJava.dependsOn tasks.getByPath(':client-v1:install'), tasks.getByPath(':client-adapter:installShadow')

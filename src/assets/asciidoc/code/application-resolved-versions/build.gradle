@@ -5,9 +5,9 @@ plugins {
   id 'com.github.johnrengelman.shadow' version '1.2.3'
 }
 // end::apply[]
-
-// tag::application[]
 mainClassName = 'shadow.App'
+// tag::application[]
+
 // end::application[]
 
 repositories {
@@ -17,7 +17,7 @@ repositories {
 // tag::dependencies[]
 dependencies {
   compile 'shadow:client:1.0.0'
-  compile 'shadow:client-adapter-all:1.0.0'
+  compile 'shadow:client-adapter:1.0.0'
 }
 // end::dependencies[]
 
@@ -27,4 +27,10 @@ shadowJar {
 }
 // end::config[]
 
-compileJava.dependsOn tasks.getByPath(':client-v1:install'), tasks.getByPath(':client-adapter-v2:publishToMavenLocal')
+// tag::excludeFile[]
+shadowJar {
+  exclude 'adapter.properties'
+}
+// end::excludeFile[]
+
+compileJava.dependsOn tasks.getByPath(':client-v1:install'), tasks.getByPath(':client-adapter:install')
