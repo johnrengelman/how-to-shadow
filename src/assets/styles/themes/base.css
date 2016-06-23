@@ -20,8 +20,46 @@ figure.canvas {
     display: none;
 }
 
+.center {
+    text-align: center;
+}
+
+.right {
+    text-align: right;
+}
+
+.left {
+    text-align: left;
+}
+
 *, ::after, ::before {
     box-sizing: inherit
+}
+
+/*********************************************
+ * CALLOUTS
+ *********************************************/
+div.colist table tr td:first-child {
+    width: 2em;
+}
+
+div.colist table {
+    font-size: .75em;
+}
+
+
+td i.conum {
+    display: inline-block;
+    background: black;
+    margin-bottom: -.33em;
+    height: 1.4em;
+    width: 1.4em;
+    margin-right: -1em;
+    border-radius: .75em;
+}
+
+td i.conum + b {
+    color: white;
 }
 
 /*********************************************
@@ -32,7 +70,7 @@ figure.canvas {
     font-size: 25px;
     line-height: 2;
     color: #000;
-    background-color: #000;
+    background: #FFF;
 }
 
 .deck section:not(.bespoke-slide), .deck:not(.bespoke-parent) {
