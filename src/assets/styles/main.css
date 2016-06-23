@@ -4,32 +4,25 @@
 *= require /themes/black
 */
 
-article.parrot h2 {
-    padding: 1em;
+@font-face {
+    font-family: "True Crimes";
+    src: url(true-crimes.ttf);
+}
+
+.bespoke-slide h1,
+.bespoke-slide h2,
+.bespoke-slide h3 {
+    font-family: "True Crimes", Helvetica, sans-serif;
+    line-height: 1.2em;
+    letter-spacing: normal;
     text-transform: uppercase;
-    display: block;
-    background: linear-gradient(270deg, #39daff, #478fd5, #50ec56, #e41e1e);
-    background-size: 800% 800%;
+    word-wrap: break-word;
 
-    -webkit-animation: partyParrot 1s ease infinite;
-    -moz-animation: partyParrot 1s ease infinite;
-    animation: partyParrot 1s ease infinite;
-}
-
-@-webkit-keyframes partyParrot {
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
-}
-@-moz-keyframes partyParrot {
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
-}
-@keyframes partyParrot {
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
+    background: -webkit-linear-gradient(top, #ebb700, #c96200);
+    background: linear-gradient(top, #ebb700, #c96200);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: .02em;
 }
 
 .bespoke-slide .colist table {
