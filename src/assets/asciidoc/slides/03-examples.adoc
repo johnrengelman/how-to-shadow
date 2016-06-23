@@ -175,9 +175,10 @@ include::code/application-transformer/build.gradle[tags=transforms]
 
 == Package Relocation
 
+[.center]
 == Conflicting dependencies
 
-[graphviz, dot-example, svg]
+[graphviz.center, dot-example, svg]
 ----
 digraph g {
     clienta[label="client:v1.0.0"]

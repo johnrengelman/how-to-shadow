@@ -38,14 +38,21 @@ article.parrot h2 {
 
 .bespoke-slide .colist table td, .bespoke-slide .colist table th {
   background: none;
-  border-bottom: none;
 }
 
 .bespoke-slide code, .bespoke-slide pre {
   font-size: .8em;
 }
+
 .bespoke-slide figcaption {
   margin-top: 0px;
   margin-bottom: 0px;
   color: #C14200;
+}
+
+.bespoke-slide {
+  background-image: url("gradle.png"), url("2015-OPI-Logo-Long.png");
+  background-position: left bottom, right bottom;
+  background-repeat: no-repeat, no-repeat;
+  background-size: auto, 50%;
 }

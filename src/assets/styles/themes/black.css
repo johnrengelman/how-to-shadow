@@ -30,8 +30,16 @@ body {
     background-color: #222;
 }
 
+/*********************************************
+ * CALLOUTS
+ *********************************************/
+td i.conum {
+    background: white;
+}
 
-
+td i.conum + b {
+    color: black;
+}
 
 /*********************************************
  * HEADERS
@@ -150,57 +158,6 @@ body {
     overflow: auto;
     max-height: 400px;
     word-wrap: normal;
-}
-
-.bespoke-slide table {
-    margin: auto;
-    border-collapse: collapse;
-    border-spacing: 0;
-}
-
-.bespoke-slide table th {
-    font-weight: bold;
-}
-
-.bespoke-slide table th,
-.bespoke-slide table td {
-    text-align: left;
-    padding: 0.2em 0.5em 0.2em 0.5em;
-    border-bottom: 1px solid;
-}
-
-.bespoke-slide table th[align="center"],
-.bespoke-slide table td[align="center"] {
-    text-align: center;
-}
-
-.bespoke-slide table th[align="right"],
-.bespoke-slide table td[align="right"] {
-    text-align: right;
-}
-
-.bespoke-slide table tbody tr:last-child th,
-.bespoke-slide table tbody tr:last-child td {
-    border-bottom: none;
-}
-
-.bespoke-slide sup {
-    vertical-align: super;
-}
-
-.bespoke-slide sub {
-    vertical-align: sub;
-}
-
-.bespoke-slide small {
-    display: inline-block;
-    font-size: 0.6em;
-    line-height: 1.2em;
-    vertical-align: top;
-}
-
-.bespoke-slide small * {
-    vertical-align: top;
 }
 
 /*********************************************

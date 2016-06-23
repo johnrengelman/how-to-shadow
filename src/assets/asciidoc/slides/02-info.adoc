@@ -15,12 +15,12 @@ Fat (uber) JAR Creator
 
 == !
 
-[.contain.canvas, .text-center]
+[.center]
 image::Shadow-pre-1.0.png[]
 
 == !
 
-[.contain.canvas, .text-center]
+[.center]
 image::Shadow-post-1.0.png[]
 
 == > 1,000,000 !!!
