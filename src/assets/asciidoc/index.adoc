@@ -1,3 +1,4 @@
+:docinfo: shared
 = DISTRIBUTION PACKAGING W/ SHADOW
 
 include::slides/01-about.adoc[]

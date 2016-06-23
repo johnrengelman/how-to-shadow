@@ -42,7 +42,7 @@ ext {
             "${assetPath}/templates" as String
         ],
         attributes: [ icons: 'font',
-                      imagesoutdir: "${assetPath}/images" as String]
+                      imagesoutdir: "${assetPath}/images" as String ]
     ]
 }
 
