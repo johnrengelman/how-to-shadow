@@ -55,6 +55,7 @@ dependencies {
     compile ratpack.dependency("guice")
     compile "com.bertramlabs.plugins:ratpack-asset-pipeline:${assetPipelineVersion}"
     runtime 'com.craigburke:asciidoctor-asset-pipeline:1.1.0-SNAPSHOT'
+    assets 'com.craigburke:asciidoctor-asset-pipeline:1.1.0-SNAPSHOT'
 }
 
 clientDependencies {

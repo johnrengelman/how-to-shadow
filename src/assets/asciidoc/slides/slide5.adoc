@@ -1,5 +1,0 @@
-[bespoke-state="parrot"]
-== Never Stop
-
-[.canvas]
-image::parrot.gif[]
