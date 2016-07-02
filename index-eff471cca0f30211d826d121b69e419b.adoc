@@ -1,0 +1,10 @@
+:docinfo: shared
+= DISTRIBUTION PACKAGING W/ SHADOW
+
+include::slides/01-about.adoc[]
+
+include::slides/02-info.adoc[]
+
+include::slides/03-examples.adoc[]
+
+include::slides/04-closing.adoc[]
