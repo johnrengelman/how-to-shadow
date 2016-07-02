@@ -17,14 +17,12 @@ html lang=(attr :lang, 'en' unless attr? :nolang)
     - if attr? :appname
       meta name='application-name' content=(attr :appname)
     link rel='stylesheet' href='main.css'
-    - unless (_docinfo = docinfo :head, '-bespoke.html').empty?
-      =_docinfo
+    =docinfo
   body id=id
     article.deck
       - unless noheader
         - if header?
-          include ../vendor/asciidoctor-bespoke/slide_title.html.slim
+          include slide_title.html.slim
       =content
-      - unless (_docinfo = docinfo :footer, '-bespoke.html').empty?
-        =_docinfo
+    =docinfo :footer
     script src='main.js'

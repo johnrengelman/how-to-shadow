@@ -2,7 +2,7 @@ import groovy.json.JsonOutput
 
 buildscript {
     ext {
-        assetPipelineVersion = '2.9.0'
+        assetPipelineVersion = '2.9.1'
     }
     repositories {
         mavenLocal()
@@ -13,7 +13,9 @@ buildscript {
         classpath 'com.craigburke.gradle:client-dependencies:1.1.3'
         classpath 'com.craigburke:asciidoctor-asset-pipeline:1.1.0-SNAPSHOT'
         classpath "com.bertramlabs.plugins:asset-pipeline-gradle:${assetPipelineVersion}"
+        classpath 'org.asciidoctor:asciidoctorj-diagram:1.3.1'
         classpath 'org.ajoberstar:gradle-git:1.5.0'
+        classpath 'com.github.jruby-gradle:jruby-gradle-plugin:1.2.1'
     }
 }
 
@@ -25,6 +27,7 @@ apply plugin: 'io.ratpack.ratpack-groovy'
 apply plugin: 'com.craigburke.client-dependencies'
 apply plugin: 'com.bertramlabs.asset-pipeline'
 apply plugin: 'org.ajoberstar.github-pages'
+apply plugin: 'com.github.jruby-gradle.base'
 
 buildScan {
     licenseAgreementUrl = 'https://gradle.com/terms-of-service'
@@ -36,13 +39,18 @@ ext {
     assetPath = file('src/assets').absolutePath
     assetConfigFile = file('build/resources/main/assets.json')
     asciidoctorConfig = [
-        header_footer: true,
+        requires: [ 'asciidoctor-bespoke', 'asciidoctor-diagram' ],
+        safe: 0,
+        docinfo1: true,
+        backend: 'bespoke',
+        gemPath: jruby.gemInstallDir.absolutePath,
+        headerFooter: true,
         template_dirs: [
-            "${assetPath}/vendor/asciidoctor-bespoke" as String,
             "${assetPath}/templates" as String
         ],
         attributes: [ icons: 'font',
-                      imagesoutdir: "${assetPath}/images" as String ]
+                      imagesoutdir: "${assetPath}/images" as String
+        ]
     ]
 }
 
@@ -55,7 +63,8 @@ dependencies {
     compile ratpack.dependency("guice")
     compile "com.bertramlabs.plugins:ratpack-asset-pipeline:${assetPipelineVersion}"
     runtime 'com.craigburke:asciidoctor-asset-pipeline:1.1.0-SNAPSHOT'
-    assets 'com.craigburke:asciidoctor-asset-pipeline:1.1.0-SNAPSHOT'
+    gems('rubygems:asciidoctor-bespoke:1.0.0.alpha.1') { transitive false }
+    gems('rubygems:asciidoctor-diagram:1.4.0') { transitive false }
 }
 
 clientDependencies {
@@ -74,9 +83,6 @@ clientDependencies {
         'bespoke-fullscreen'('1.*', into: 'bespoke/plugins')
         'bespoke-touch'('1.*', into: 'bespoke/plugins')
         'bespoke-overview'('1.*', into: 'bespoke/plugins', transitive: false)
-        'asciidoctor-bespoke'('*', url: 'asciidoctor/asciidoctor-bespoke', from: 'templates/slim') {
-            include '*'
-        }
         'normalize.css'('4.1.1')
         'font-awesome'('4.6.3') {
             include 'css/font-awesome.min.css'
@@ -119,9 +125,6 @@ task saveAssetConfig() {
     }
 }
 
-run.dependsOn saveAssetConfig
+assetCompile.dependsOn jrubyPrepare
+run.dependsOn jrubyPrepare, saveAssetConfig
 publishGhPages.dependsOn assetCompile
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '2.13'
-}
