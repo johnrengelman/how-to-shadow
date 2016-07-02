@@ -1,32 +1,4 @@
-/*!
- * bespoke-keys v1.0.0
- *
- * Copyright 2015, Mark Dalgleish
- * This content is released under the MIT license
- * http://mit-license.org/markdalgleish
- */
-
-!function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{var n;"undefined"!=typeof window?n=window:"undefined"!=typeof global?n=global:"undefined"!=typeof self&&(n=self);var o=n;o=o.bespoke||(o.bespoke={}),o=o.plugins||(o.plugins={}),o.keys=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(_dereq_,module,exports){
-module.exports = function(options) {
-  return function(deck) {
-    var isHorizontal = options !== 'vertical';
-
-    document.addEventListener('keydown', function(e) {
-      if (e.which == 34 || // PAGE DOWN
-        (e.which == 32 && !e.shiftKey) || // SPACE WITHOUT SHIFT
-        (isHorizontal && e.which == 39) || // RIGHT
-        (!isHorizontal && e.which == 40) // DOWN
-      ) { deck.next(); }
-
-      if (e.which == 33 || // PAGE UP
-        (e.which == 32 && e.shiftKey) || // SPACE + SHIFT
-        (isHorizontal && e.which == 37) || // LEFT
-        (!isHorizontal && e.which == 38) // UP
-      ) { deck.prev(); }
-    });
-  };
-};
-
-},{}]},{},[1])
-(1)
-});
+//# sourceMappingURL=bespoke-keys.js.map
+!function(g){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=g();else if("function"==typeof define&&define.amd)define([],g);else{var b;"undefined"!=typeof window?b=window:"undefined"!=typeof global?b=global:"undefined"!=typeof self&&(b=self);b=b.bespoke||(b.bespoke={});b=b.plugins||(b.plugins={});b.keys=g()}}(function(){return function b(d,f,h){function k(a,l){if(!f[a]){if(!d[a]){var e="function"==typeof require&&require;if(!l&&e)return e(a,!0);if(c)return c(a,!0);throw Error("Cannot find module '"+
+a+"'");}e=f[a]={exports:{}};d[a][0].call(e.exports,function(b){var c=d[a][1][b];return k(c?c:b)},e,e.exports,b,d,f,h)}return f[a].exports}for(var c="function"==typeof require&&require,a=0;a<h.length;a++)k(h[a]);return k}({1:[function(b,d,f){d.exports=function(b){return function(d){var c="vertical"!==b;document.addEventListener("keydown",function(a){(34==a.which||32==a.which&&!a.shiftKey||c&&39==a.which||!c&&40==a.which)&&d.next();(33==a.which||32==a.which&&a.shiftKey||c&&37==a.which||!c&&38==a.which)&&
+d.prev()})}}},{}]},{},[1])(1)});

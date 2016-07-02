@@ -1,45 +1,5 @@
-/*!
- * bespoke-fullscreen v1.0.0
- *
- * Copyright 2015, Dan Allen
- * This content is released under the MIT license
- */
-
-(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g=(g.bespoke||(g.bespoke = {}));g=(g.plugins||(g.plugins = {}));g.fullscreen = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-module.exports = function() {
-  return function(deck) {
-    var KEY_F = 70, KEY_F11 = 122, EVT_KEYDOWN = 'keydown',
-      toggleFullscreen = function() {
-        var el, func;
-        if (document.fullscreenElement || document.webkitFullscreenElement ||
-            document.mozFullScreenElement || document.msFullscreenElement) {
-          func = (el = document).exitFullscreen ||
-              el.webkitExitFullscreen || el.mozCancelFullScreen || el.msExitFullscreen;
-        }
-        else {
-          func = (el = document.documentElement).requestFullscreen ||
-              el.webkitRequestFullscreen || el.mozRequestFullScreen || el.msRequestFullscreen;
-        }
-        func.apply(el);
-      },
-      isModifierPressed = function(e) {
-        return !!(e.ctrlKey || e.shiftKey || e.altKey || e.metaKey);
-      },
-      onKeydown = function(e) {
-        var key = e.which;
-        if ((key === KEY_F || key === KEY_F11) && !isModifierPressed(e)) {
-          toggleFullscreen();
-          if (key === KEY_F11) e.preventDefault();
-        }
-      };
-    if (document.fullscreenEnabled || document.webkitFullscreenEnabled ||
-        document.mozFullScreenEnabled || document.msFullscreenEnabled) {
-      deck.on('destroy', function() { document.removeEventListener(EVT_KEYDOWN, onKeydown); });
-      deck.on('fullscreen.toggle', toggleFullscreen);
-      document.addEventListener(EVT_KEYDOWN, onKeydown);
-    }
-  };
-};
-
-},{}]},{},[1])(1)
-});
+//# sourceMappingURL=bespoke-fullscreen.js.map
+(function(f){if("object"===typeof exports&&"undefined"!==typeof module)module.exports=f();else if("function"===typeof define&&define.amd)define([],f);else{var b;b="undefined"!==typeof window?window:"undefined"!==typeof global?global:"undefined"!==typeof self?self:this;b=b.bespoke||(b.bespoke={});b=b.plugins||(b.plugins={});b.fullscreen=f()}})(function(){return function b(d,e,g){function h(a,l){if(!e[a]){if(!d[a]){var c="function"==typeof require&&require;if(!l&&c)return c(a,!0);if(k)return k(a,!0);
+c=Error("Cannot find module '"+a+"'");throw c.code="MODULE_NOT_FOUND",c;}c=e[a]={exports:{}};d[a][0].call(c.exports,function(b){var c=d[a][1][b];return h(c?c:b)},c,c.exports,b,d,e,g)}return e[a].exports}for(var k="function"==typeof require&&require,a=0;a<g.length;a++)h(g[a]);return h}({1:[function(b,d,e){d.exports=function(){return function(b){var d=function(){var a;(document.fullscreenElement||document.webkitFullscreenElement||document.mozFullScreenElement||document.msFullscreenElement?(a=document).exitFullscreen||
+a.webkitExitFullscreen||a.mozCancelFullScreen||a.msExitFullscreen:(a=document.documentElement).requestFullscreen||a.webkitRequestFullscreen||a.mozRequestFullScreen||a.msRequestFullscreen).apply(a)},e=function(a){var b=a.which;70!==b&&122!==b||a.ctrlKey||a.shiftKey||a.altKey||a.metaKey||(d(),122===b&&a.preventDefault())};if(document.fullscreenEnabled||document.webkitFullscreenEnabled||document.mozFullScreenEnabled||document.msFullscreenEnabled)b.on("destroy",function(){document.removeEventListener("keydown",
+e)}),b.on("fullscreen.toggle",d),document.addEventListener("keydown",e)}}},{}]},{},[1])(1)});
